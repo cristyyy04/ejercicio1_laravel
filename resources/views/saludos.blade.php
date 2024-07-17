@@ -16,5 +16,10 @@
         <a href="{{ route('contactos') }}">Contactos</a>
     </nav>
     </header>
+    @forelse ($consolas as $consola)
+        <li>{{$consola}}</li>
+    @empty
+        <p>No hay consolas</p>
+    @endforelse
 </body>
 </html>
