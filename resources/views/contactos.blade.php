@@ -31,13 +31,15 @@
     </nav>
     </header>
     <form action="contacto" method="post">
-        <label for="">Nombre</label>
+        <label for="">Nombre
         <input type="text" name="nombre">
-        <label for="">E-mail</label>
+      {{$errors->first('nombre')}}</label>
+        <label for="">E-mail
         <input type="email" name="mail">
-        <label for="">Mensaje</label>
+        {{$errors->first('mail')}}</label>
+        <label for="">Mensaje
        <textarea name="mensaje" id="" cols="30" rows="10">
-       </textarea>
+       </textarea>{{$errors->first('mensaje')}}</label>
        <input type="submit" value="Enviar">
      </form>
 

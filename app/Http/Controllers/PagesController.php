@@ -17,13 +17,20 @@ $this->request=$request;
     public function contact(){
         return view('contactos');
     }
-    public function mensaje(){
-        $msj=$this->request->input('nombre').'Ingreso correctamente el mensaje';
-      //  return $this->request->all();
+    public function mensaje(Request $request){
+     /*   $msj=$this->request->input('nombre').' ingreso correctamente el mensaje';
+
       if (!$this->request->has('nombre')) {
        $msj='Debe ingresar nombre';
       }
       return $msj;
+      */
+      $this->validate($request,[
+        'nombre' => 'required|alpha', // que nombre solo contenga letras
+        'email' => 'nullable|email',  // el campo es opcional y ingresar email
+        'mensaje' => 'required|string|max:200'
+      ]);
+      return $request->all();
     }
     public function saludos($nombre="Invitado"){
         $html="<h2>contenido en html</h2>";
