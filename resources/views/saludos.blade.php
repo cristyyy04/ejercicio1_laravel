@@ -6,14 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saludos</title>
 </head>
+<style>
+    .active{
+        text-decoration: none;
+    color:red;
+    background-color:black;
+    }
+    </style>
 <body>
     <h1>Saludos {{$nombre }}</h1>
 
+    <h1>{{ request()->is('/') ? 'Esta en el home':'NO esta en el home'}}</h1>
+
     <header>
+        <?php
+        function activarMenu($url){
+        return request()->is($url) ? 'active':'';
+        }
+        ?>
         <nav>
-        <a href="{{ route('home') }}">Inicio</a>
-        <a href="{{ route('saludos','Jorge') }}">Saludos</a>
-        <a href="{{ route('contactos') }}">Contactos</a>
+        <a class="{{ activarMenu('/')}}" href="{{ route('home') }}">Inicio</a>
+
+        <a  class="{{activarMenu('saludos/*')}}" href="{{ route('saludos','Jorge')  }}">salones disponibles</a>
+        <a class="{{ request()->is('contactos') ? 'active' : '' }}" href="{{ route('contactos') }}">Contacto</a>
     </nav>
     </header>
     @forelse ($consolas as $consola)
