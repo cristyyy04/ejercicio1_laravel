@@ -23,16 +23,15 @@ Route::get('/',['as' => 'home', function () {
     //return view('welcome');
     return "Saludos $nombre";
 });*/
-//Route::get('/', [PagesController::class, 'home']);
-/*
-Route::get('/',['as' => 'home','uses' => 'PagesController@home']);
-
-Route::get('contactos',['as' => 'contactos','uses' => 'PagesController@contact']);
-*/
 Route::get('/', [PagesController::class, 'home'])->name('home');
+Route::post('contacto', [PagesController::class, 'mensaje']);
 Route::get('contactos', [PagesController::class, 'contact'])->name('contactos');
 Route::get('saludos/{nombre?}',  [PagesController::class, 'saludos'])->where('nombre', "[A-Za-z]+")->name('saludos');
+/*
+Route::get('/', [PagesController::class, 'home'])->name('home');
+Route::get('contactos', [PagesController::class, 'contact'])->name('contactos');
 
+*/
 /*
 Route::get('saludos/{nombre?}', function ($nombre = "Invitado") {
     return view('saludos', compact('nombre'));

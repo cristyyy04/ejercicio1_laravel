@@ -30,5 +30,16 @@
         <a class="{{ request()->is('contactos') ? 'active' : '' }}" href="{{ route('contactos') }}">Contacto</a>
     </nav>
     </header>
+    <form action="contacto" method="post">
+        <label for="">Nombre</label>
+        <input type="text" name="nombre">
+        <label for="">E-mail</label>
+        <input type="email" name="mail">
+        <label for="">Mensaje</label>
+       <textarea name="mensaje" id="" cols="30" rows="10">
+       </textarea>
+       <input type="submit" value="Enviar">
+     </form>
+
 </body>
 </html>
