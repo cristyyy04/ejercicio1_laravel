@@ -1,5 +1,5 @@
 <?php
-
+//PagesController
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -25,14 +25,14 @@ $this->request=$request;
       }
       return $msj;
       */
-      /*$this->validate($request,[
+     /* $this->validate($request,[
         'nombre' => 'required|alpha', // que nombre solo contenga letras
         'email' => 'nullable|email',  // el campo es opcional y ingresar email
         'mensaje' => 'required|string|min:10|max:200'
-      ]);*/
-
+      ]);
+*/
       $data=$request->all();//trae el valor como un json
-      return  redirect()->route('contactos')
+      return  back()->route('contactos')
       ->with('info','Tu mensaje ha sido enviado ');
     }
     public function saludos($nombre="Invitado"){
