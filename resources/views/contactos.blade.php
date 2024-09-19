@@ -12,6 +12,10 @@
     color:red;
     background-color:black;
     }
+    .error{
+        color: red;
+        font-size: 18px;
+    }
     </style>
 <body>
     <?php
@@ -30,18 +34,26 @@
         <a class="{{ request()->is('contactos') ? 'active' : '' }}" href="{{ route('contactos') }}">Contacto</a>
     </nav>
     </header>
+    @if (session()->has('info'))
+        {{ session('info')}}
+
+
+    @else
+
     <form action="contacto" method="post">
-        <label for="">Nombre
-        <input type="text" name="nombre">
-      {{$errors->first('nombre')}}</label>
-        <label for="">E-mail
-        <input type="email" name="mail">
-        {{$errors->first('mail')}}</label>
-        <label for="">Mensaje
-       <textarea name="mensaje" id="" cols="30" rows="10">
-       </textarea>{{$errors->first('mensaje')}}</label>
+     <p>   <label for="">Nombre
+        <input type="text" name="nombre" value="{{old('nombre')}}">
+      {!!$errors->first('nombre','<span class=error>:message</span>')!!}</label></p>
+      <p> <label for="">E-mail
+        <input type="email" name="mail" value="{{old('mail')}}">
+        {!!$errors->first('mail','<span class=error>:message</span>')!!}</label></p>
+        <p>  <label for="">Mensaje
+       <textarea name="mensaje"  cols="30" rows="10">
+        {{old('mensaje')}}
+       </textarea>{!!$errors->first('mensaje','<span class=error>:message</span>')!!}</label></p>
        <input type="submit" value="Enviar">
      </form>
 
+     @endif
 </body>
 </html>

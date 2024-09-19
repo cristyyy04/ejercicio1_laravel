@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use App\Http\Requests\CreateMessageRequest;
 class PagesController extends Controller
 {
     protected $request;
@@ -17,7 +17,7 @@ $this->request=$request;
     public function contact(){
         return view('contactos');
     }
-    public function mensaje(Request $request){
+    public function mensaje(CreateMessageRequest $request){
      /*   $msj=$this->request->input('nombre').' ingreso correctamente el mensaje';
 
       if (!$this->request->has('nombre')) {
@@ -25,12 +25,15 @@ $this->request=$request;
       }
       return $msj;
       */
-      $this->validate($request,[
+      /*$this->validate($request,[
         'nombre' => 'required|alpha', // que nombre solo contenga letras
         'email' => 'nullable|email',  // el campo es opcional y ingresar email
-        'mensaje' => 'required|string|max:200'
-      ]);
-      return $request->all();
+        'mensaje' => 'required|string|min:10|max:200'
+      ]);*/
+
+      $data=$request->all();//trae el valor como un json
+      return  redirect()->route('contactos')
+      ->with('info','Tu mensaje ha sido enviado ');
     }
     public function saludos($nombre="Invitado"){
         $html="<h2>contenido en html</h2>";
