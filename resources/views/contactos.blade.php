@@ -2,38 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contactos</title>
-</head>
-<style>
-    .active{
-        text-decoration: none;
-    color:red;
-    background-color:black;
-    }
-    .error{
-        color: red;
-        font-size: 18px;
-    }
+    <style>
+        .active {
+            text-decoration: underline;
+            color: red;
+        }
+        .error {
+            color: red;
+            font-size: 18px;
+        }
     </style>
+</head>
 <body>
-    <?php
-    function activarMenu($url){
-    return request()->is($url) ? 'active':'';
-    }
-    ?>
     <h1>Contactos</h1>
-    <h1>{{ request()->is('/') ? 'Esta en el home':'NO esta en el home'}}</h1>
+    <h1>{{ request()->is('/') ? 'Esta en el home' : 'NO está en el home' }}</h1>
 
     <header>
         <nav>
-        <a class="{{ activarMenu('/')}}" href="{{ route('home') }}">Inicio</a>
-
-        <a  class="{{activarMenu('saludos/*')}}" href="{{ route('saludos','Jorge')  }}">saludos</a>
-        <a class="{{ request()->is('contactos') ? 'active' : '' }}" href="{{ route('contactos') }}">Contacto</a>
-    </nav>
+            <a class="{{ activeMenu('/') }}" href="{{ route('home') }}">Inicio</a>
+            <a class="{{ activeMenu('saludos/*') }}" href="{{ route('saludos', 'Jorge') }}">Saludos</a>
+            <a class="{{ activeMenu('contactos') }}" href="{{ route('contactos') }}">Contacto</a>
+        </nav>
     </header>
+
     @if (session()->has('info'))
         {{ session('info')}}
 

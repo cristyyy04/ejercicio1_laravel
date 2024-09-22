@@ -16,19 +16,15 @@
 <body>
     <h1>Saludos {{$nombre }}</h1>
 
-    <h1>{{ request()->is('/') ? 'Esta en el home':'NO esta en el home'}}</h1>
+    <h1>{{ activeMenu('/') ? 'Esta en el home':'NO esta en el home'}}</h1>
 
     <header>
-        <?php
-        function activarMenu($url){
-        return request()->is($url) ? 'active':'';
-        }
-        ?>
-        <nav>
-        <a class="{{ activarMenu('/')}}" href="{{ route('home') }}">Inicio</a>
 
-        <a  class="{{activarMenu('saludos/*')}}" href="{{ route('saludos','Jorge')  }}">salones disponibles</a>
-        <a class="{{ request()->is('contactos') ? 'active' : '' }}" href="{{ route('contactos') }}">Contacto</a>
+        <nav>
+        <a class="{{ activeMenu('/')}}" href="{{ route('home') }}">Inicio</a>
+
+        <a  class="{{activeMenu('saludos/*')}}" href="{{ route('saludos','Jorge')  }}">salones disponibles</a>
+        <a class="{{ activeMenu('contactos') }}" href="{{ route('contactos') }}">Contacto</a>
     </nav>
     </header>
     @forelse ($consolas as $consola)

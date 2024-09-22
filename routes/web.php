@@ -27,6 +27,7 @@ Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::post('contacto', [PagesController::class, 'mensaje']);
 Route::get('contactos', [PagesController::class, 'contact'])->name('contactos');
 Route::get('saludos/{nombre?}',  [PagesController::class, 'saludos'])->where('nombre', "[A-Za-z]+")->name('saludos');
+
 /*
 Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::get('contactos', [PagesController::class, 'contact'])->name('contactos');
