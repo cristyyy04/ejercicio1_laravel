@@ -17,7 +17,7 @@ $this->request=$request;
     public function contact(){
         return view('contactos');
     }
-    public function mensaje(CreateMessageRequest $request){
+    public function mensaje(CreateMessageRequest $request) {
      /*   $msj=$this->request->input('nombre').' ingreso correctamente el mensaje';
 
       if (!$this->request->has('nombre')) {
@@ -31,10 +31,16 @@ $this->request=$request;
         'mensaje' => 'required|string|min:10|max:200'
       ]);
 */
-      $data=$request->all();//trae el valor como un json
-      return  back()->route('contactos')
-      ->with('info','Tu mensaje ha sido enviado ');
-    }
+
+    // Validation is handled by CreateMessageRequest
+    $data = $request->validated(); // This should work now
+
+    // You can do something with the validated data, e.g., save to the database, etc.
+
+    return redirect()->route('contactos')->with('info', 'Tu mensaje ha sido enviado');
+}
+
+
     public function saludos($nombre="Invitado"){
         $html="<h2>contenido en html</h2>";
 $script="<script>alert('problema')</script>";

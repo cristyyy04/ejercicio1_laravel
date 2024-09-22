@@ -41,7 +41,8 @@
     @else
 
     <form action="contacto" method="post">
-     <p>   <label for="">Nombre
+        @csrf
+        <p>   <label for="">Nombre
         <input type="text" name="nombre" value="{{old('nombre')}}">
       {!!$errors->first('nombre','<span class=error>:message</span>')!!}</label></p>
       <p> <label for="">E-mail
