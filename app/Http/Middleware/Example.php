@@ -15,6 +15,10 @@ class Example
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (true) {
+            # code...
+            return $next($request);
+        }
+       return response('No puedes continuar',404);
     }
 }

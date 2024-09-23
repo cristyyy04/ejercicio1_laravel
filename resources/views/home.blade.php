@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .active {
-            text-decoration: none;
-            color: red;
+      .active {
+            text-decoration: underline;
+          color: red;
             background-color: black;
         }
     </style>

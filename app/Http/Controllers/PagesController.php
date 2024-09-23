@@ -9,7 +9,7 @@ class PagesController extends Controller
     protected $request;
 public function __construct(Request $request){
 $this->request=$request;
-
+$this->middleware('example',['except'=>['home','saludos','contact']]);
 }
     public function home(){
         return view('home');
@@ -18,22 +18,7 @@ $this->request=$request;
         return view('contactos');
     }
     public function mensaje(CreateMessageRequest $request) {
-     /*   $msj=$this->request->input('nombre').' ingreso correctamente el mensaje';
-
-      if (!$this->request->has('nombre')) {
-       $msj='Debe ingresar nombre';
-      }
-      return $msj;
-      */
-     /* $this->validate($request,[
-        'nombre' => 'required|alpha', // que nombre solo contenga letras
-        'email' => 'nullable|email',  // el campo es opcional y ingresar email
-        'mensaje' => 'required|string|min:10|max:200'
-      ]);
-*/
-
-    // Validation is handled by CreateMessageRequest
-    $data = $request->validated(); // This should work now
+      $data = $request->validated(); // This should work now
 
     // You can do something with the validated data, e.g., save to the database, etc.
 

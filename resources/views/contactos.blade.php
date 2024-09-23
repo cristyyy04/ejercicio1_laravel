@@ -8,6 +8,7 @@
         .active {
             text-decoration: underline;
             color: red;
+            background-color: black;
         }
         .error {
             color: red;
