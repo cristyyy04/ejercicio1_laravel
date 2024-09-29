@@ -9,12 +9,12 @@ class PagesController extends Controller
     protected $request;
 public function __construct(Request $request){
 $this->request=$request;
-$this->middleware('example',['except'=>['home','saludos','contact']]);
+//$this->middleware('example',['except'=>['home','saludos','contact']]);
 }
     public function home(){
         return view('home');
     }
-    public function contact(){
+ /*   public function contact(){
         return view('contactos');
     }
     public function mensaje(CreateMessageRequest $request) {
@@ -24,7 +24,7 @@ $this->middleware('example',['except'=>['home','saludos','contact']]);
 
     return redirect()->route('contactos')->with('info', 'Tu mensaje ha sido enviado');
 }
-
+*/
 
     public function saludos($nombre="Invitado"){
         $html="<h2>contenido en html</h2>";

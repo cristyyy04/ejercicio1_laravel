@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\MessagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,10 +25,12 @@ Route::get('/',['as' => 'home', function () {
     return "Saludos $nombre";
 });*/
 Route::get('/', [PagesController::class, 'home'])->name('home');
-Route::post('contacto', [PagesController::class, 'mensaje']);
-Route::get('contactos', [PagesController::class, 'contact'])->name('contactos');
+//Route::post('contacto', [PagesController::class, 'mensaje']);
+//Route::get('contactos', [PagesController::class, 'contact'])->name('contactos');
 Route::get('saludos/{nombre?}',  [PagesController::class, 'saludos'])->where('nombre', "[A-Za-z]+")->name('saludos');
-
+//Route::resource('messages', MessagesController::class);
+Route::get('messages/create', [MessagesController::class, 'create'])->name('messages.create');
+Route::post('messages', [MessagesController::class, 'store'])->name('messages.store');
 /*
 Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::get('contactos', [PagesController::class, 'contact'])->name('contactos');
