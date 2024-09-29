@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateMessageRequest;
 
@@ -26,14 +27,24 @@ class MessagesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateMessageRequest $request)
-    {
-        $data = $request->validated(); // This should work now
 
-        // You can do something with the validated data, e.g., save to the database, etc.
+        // Inserting data into the 'messages' table
+        public function store(CreateMessageRequest $request)
+        {
+            // Validating and retrieving the data
+            $data = $request->validated();
 
-             // Further logic to save message...
-        return redirect()->route('messages.create')->with('info', 'Your message has been sent!');
+            // Inserting data into the 'messages' table
+            DB::table('messages')->insert([
+                "nombre" => $request->input('nombre'),   // Corrected syntax
+                "email" => $request->input('email'),     // Corrected syntax
+                "mensaje" => $request->input('mensaje')  // Corrected syntax
+            ]);
+
+            // Return a success message or redirect
+            return redirect()->route('messages.create')->with('info', 'Your message has been sent!');
+
+        // return redirect()->route('messages.create')->with('info', 'Your message has been sent!');
    //return $request->all();
     }
 

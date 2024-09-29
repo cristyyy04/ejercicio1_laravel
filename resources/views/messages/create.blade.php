@@ -11,19 +11,19 @@
     <p>
         <label for="nombre">Nombre
             <input type="text" name="nombre" value="{{ old('nombre') }}">
-            <span class="error">{!! $errors->first('nombre', ':message') !!}</span>
+            <span class="error">{{ $errors->first('nombre') }}</span>
         </label>
     </p>
     <p>
-        <label for="mail">E-mail
-            <input type="email" name="mail" value="{{ old('mail') }}">
-            {!! $errors->first('mail', '<span class="error">:message</span>') !!}
+        <label for="email">E-mail
+            <input type="email" name="email" value="{{ old('email') }}">
+            <span class="error">{{ $errors->first('email') }}</span>
         </label>
     </p>
     <p>
         <label for="mensaje">Mensaje
             <textarea name="mensaje" cols="30" rows="10">{{ old('mensaje') }}</textarea>
-            {!! $errors->first('mensaje', '<span class="error">:message</span>') !!}
+            <span class="error">{{ $errors->first('mensaje') }}</span>
         </label>
     </p>
     <input type="submit" value="Enviar">

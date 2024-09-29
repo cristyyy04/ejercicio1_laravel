@@ -15,12 +15,12 @@ class CreateMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|alpha', // Name should only contain letters
-            'email' => 'nullable|email',   // Email is optional but must be valid if provided
-            'mensaje' => 'required|string|min:10|max:200' // Message must be a string within the specified limits
-
+            'nombre' => 'required|string|max:255',
+            'email' => 'required|email',
+            'mensaje' => 'required|string'
         ];
     }
+
 
     public function messages()
     {
