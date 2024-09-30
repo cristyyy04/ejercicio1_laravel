@@ -32,7 +32,8 @@ Route::get('saludos/{nombre?}',  [PagesController::class, 'saludos'])->where('no
 Route::get('messages/create', [MessagesController::class, 'create'])->name('messages.create');
 Route::get('messages', [MessagesController::class, 'index'])->name('messages.index');
 Route::get('messages/{id?}/edit/', [MessagesController::class, 'edit'])->name('messages.edit');
-Route::put('messages/{id?}', [MessagesController::class, 'update'])->name('messages.update');
+Route::put('messages/{id}', [MessagesController::class, 'update'])->name('messages.update');
+
 Route::get('messages/{id?}', [MessagesController::class, 'show'])->name('messages.show');
 Route::post('messages', [MessagesController::class, 'store'])->name('messages.store');
 Route::delete('messages/{id?}', [MessagesController::class, 'destroy'])->name('messages.destroy');
