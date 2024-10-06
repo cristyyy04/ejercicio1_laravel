@@ -2,7 +2,7 @@
 
 @section('contenido')
     <h1>Editar mensaje</h1>
-    <form method="POST" action="{{ route('messages.update', $message->id) }}">
+    <form method="POST" action="{{ route('mensajes.update', $message->id) }}">
         @csrf <!-- Agregar token CSRF correctamente -->
         {!! method_field('PUT') !!}
 

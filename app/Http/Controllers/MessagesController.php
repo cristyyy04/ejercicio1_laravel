@@ -67,9 +67,9 @@ return view('messages.index',compact('messages'));
 
 
             // Return a success message or redirect
-            return redirect()->route('messages.index')->with('info', 'Your message has been sent!');
+            return redirect()->route('mensajes.index')->with('info', 'Your message has been sent!');
 
-        // return redirect()->route('messages.create')->with('info', 'Your message has been sent!');
+        // return redirect()->route('mensajes.create')->with('info', 'Your message has been sent!');
    //return $request->all();
     }
 
@@ -113,7 +113,7 @@ return view('messages.index',compact('messages'));
             ]
         );
 
-        return redirect()->route('messages.index');
+        return redirect()->route('mensajes.index');
 
     }
 
@@ -123,7 +123,7 @@ return view('messages.index',compact('messages'));
     public function destroy(string $id)
     {
         DB::table('messages')->where('id',$id)->delete();
-        return redirect()->route('messages.index');
+        return redirect()->route('mensajes.index');
 
         //
     }
