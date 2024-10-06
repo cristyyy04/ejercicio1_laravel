@@ -37,6 +37,7 @@ Route::put('messages/{id}', [MessagesController::class, 'update'])->name('messag
 Route::get('messages/{id?}', [MessagesController::class, 'show'])->name('messages.show');
 Route::post('messages', [MessagesController::class, 'store'])->name('messages.store');
 Route::delete('messages/{id?}', [MessagesController::class, 'destroy'])->name('messages.destroy');
+//Route::resource('messages',MessagesController::class);
 /*
 Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::get('contactos', [PagesController::class, 'contact'])->name('contactos');
