@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\Message;
 use App\Http\Requests\CreateMessageRequest;
 //use Illuminate\Contracts\View\Factory as ViewFactory;
 class MessagesController extends Controller
 {
-   protected $messages;
+   //protected $messages;
  //   protected $view;
  //   protected $redirect;
 
@@ -29,7 +30,8 @@ class MessagesController extends Controller
     public function index()
     {
       //  $messages = $this->messages->getPaginated();
-$messages=DB::table('messages')->get();
+//$messages=DB::table('messages')->get();
+$messages=Message::all();
 return view('messages.index',compact('messages'));
       //  return $this->view->make('messages.index', compact('messages'));
     }
@@ -53,10 +55,15 @@ return view('messages.index',compact('messages'));
         public function store(CreateMessageRequest $request)
         {
             // Validating and retrieving the data
-            $data = $request->validated();
-
-            // Inserting data into the 'messages' table
-            DB::table('messages')->insert([
+           /* $data = $request->validated();
+$message=new Message;
+$message->nombre = $request->input('nombre');
+$message->email = $request->input('email');
+$message->mensaje = $request->input('mensaje');
+$message->save();
+*/
+// Inserting data into the 'messages' table
+          /*  DB::table('messages')->insert([
                 "nombre" => $request->input('nombre'),   // Corrected syntax
                 "email" => $request->input('email'),     // Corrected syntax
                 "mensaje" => $request->input('mensaje'),  // Corrected syntax
@@ -64,8 +71,8 @@ return view('messages.index',compact('messages'));
                 "updated_at" => Carbon::now() // Corrected syntax
 
             ]);
-
-
+*/
+Message::create($request->all());
             // Return a success message or redirect
             return redirect()->route('mensajes.index')->with('info', 'Your message has been sent!');
 
@@ -79,8 +86,10 @@ return view('messages.index',compact('messages'));
     public function show(string $id)
     {
 
-        $message=DB::table('messages')->where('id',$id)->first();
-        //
+      //  $message=DB::table('messages')->where('id',$id)->first();
+
+      //
+      $message=Message::findOrFail($id);
         return view('messages.show',compact('message'));
     }
 
@@ -89,8 +98,8 @@ return view('messages.index',compact('messages'));
      */
     public function edit(string $id)
     {
-        $message=DB::table('messages')->where('id',$id)->first();
-
+        //$message=DB::table('messages')->where('id',$id)->first();
+        $message=Message::findOrFail($id);
         return view('messages.edit',compact('message'));
         //
     }
@@ -100,10 +109,10 @@ return view('messages.index',compact('messages'));
      */
     public function update(CreateMessageRequest $request, string $id)
     {
-        $data = $request->validated();
+        //$data = $request->validated();
 
         //
-        $message=DB::table('messages')->where('id',$id)->update(
+     /*   $message=DB::table('messages')->where('id',$id)->update(
             [
                 "nombre" => $request->input('nombre'),   // Corrected syntax
                 "email" => $request->input('email'),     // Corrected syntax
@@ -111,8 +120,8 @@ return view('messages.index',compact('messages'));
                 "updated_at" => Carbon::now() // Corrected syntax
 
             ]
-        );
-
+        );*/
+     Message::findOrFail($id)->update($request->all());
         return redirect()->route('mensajes.index');
 
     }
@@ -122,7 +131,8 @@ return view('messages.index',compact('messages'));
      */
     public function destroy(string $id)
     {
-        DB::table('messages')->where('id',$id)->delete();
+        //DB::table('messages')->where('id',$id)->delete();
+        Message::findOrFail($id)->delete();
         return redirect()->route('mensajes.index');
 
         //
